@@ -25,8 +25,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="608.21074"
-     inkscape:cy="240.79951"
+     inkscape:cx="478.21074"
+     inkscape:cy="560.79951"
      inkscape:document-units="px"
      inkscape:current-layer="layer7"
      showgrid="true"
@@ -352,7 +352,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1511,7 +1511,8 @@
          id="tspan3910">Pre-processing</tspan></text>
     <a
        id="a4117"
-       xlink:href="https://seafile.cer.auckland.ac.nz/">
+       xlink:href="https://seafile.cer.auckland.ac.nz/"
+       target="_top">
       <g
          id="g4108">
         <text
@@ -1900,7 +1901,8 @@
        style="fill:none;stroke:#616161;stroke-width:0.09744875;stroke-opacity:1" />
     <a
        id="a4337"
-       xlink:href="https://auckland.figshare.com/">
+       xlink:href="https://auckland.figshare.com/"
+       target="_top">
       <g
          id="g4327">
         <rect
@@ -1946,7 +1948,8 @@
     </a>
     <a
        id="a4095"
-       xlink:href="https://wiki.auckland.ac.nz/pages/viewpage.action?pageId=35586193">
+       xlink:href="https://wiki.auckland.ac.nz/pages/viewpage.action?pageId=35586193"
+       target="_top">
       <g
          id="g4086">
         <g
@@ -2013,7 +2016,8 @@
          style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:26px;line-height:125%;font-family:'CMU Sans Serif Demi Condensed';-inkscape-font-specification:'CMU Sans Serif Demi Condensed, Semi-Bold Condensed';text-align:start;writing-mode:lr-tb;text-anchor:start">Profiles</tspan></text>
     <a
        id="a4203"
-       xlink:href="https://researchoutputs.auckland.ac.nz/default.html">
+       xlink:href="https://researchoutputs.auckland.ac.nz/default.html"
+       target="_top">
       <g
          id="g4197">
         <text
@@ -2414,7 +2418,8 @@
            id="tspan6111">and privacy concerns.</tspan></tspan></text>
     <a
        id="a4294"
-       xlink:href="https://auckland.figshare.com/">
+       xlink:href="https://auckland.figshare.com/"
+       target="_top">
       <g
          id="g4262">
         <rect
@@ -2544,7 +2549,8 @@
     </a>
     <a
        id="a4236"
-       xlink:href="https://researchspace.auckland.ac.nz/">
+       xlink:href="https://researchspace.auckland.ac.nz/"
+       target="_top">
       <g
          id="g4214">
         <rect
@@ -2700,7 +2706,8 @@
            id="tspan6009">publications. </tspan></tspan></text>
     <a
        id="a4162"
-       xlink:href="http://creativecommons.org/choose/">
+       xlink:href="http://creativecommons.org/choose/"
+       target="_top">
       <g
          id="g4131">
         <rect
