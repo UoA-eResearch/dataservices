@@ -1,0 +1,20 @@
+@font-face {
+    font-family:"CMU Sans Serif";
+    src: url("fonts/cmunss.ttf");
+}
+@font-face {
+    font-family:"CMU Sans Serif Demi Condensed";
+    src: url("fonts/cmunssdc.ttf");
+} 
+@font-face {
+    font-family:"Nunito";
+    src: url("fonts/nunito.ttf");
+}
+@font-face {
+    font-family:"Verdana";
+    src: url("fonts/verdana.ttf");
+}
+
+:root {
+  margin: auto;
+}
