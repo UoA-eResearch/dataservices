@@ -3,9 +3,80 @@
 <head>
 <title>Research Data Management Lifecycle</title>
 </head>
+<style>
+  #sidebar {
+    position: fixed;
+    border: 2px solid black;
+    width: 20%;
+    right: 1%;
+    top: 5%;
+    height: 80%;
+    font-family: 'CMU Sans Serif';
+    padding: 20px;
+  }
+  h1 {
+    font-family: 'CMU Sans Serif Demi Condensed';
+  }
+  #svg {
+    display:block;
+    margin:auto;
+  }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type='text/javascript'>
+  $(document).ready(function() {
+    $('#svg').load(function() {
+      // Dict of id's and their content
+      var content = {
+        'a4095':
+            "<p>A data management plan or DMP is a formal document that outlines how you will handle your data both during your research, and after the project is completed. The goal of a data management plan is to consider the many aspects of data management, metadata generation, data preservation, and analysis before the project begins; this ensures that data are well-managed in the present, and prepared for preservation in the future.</p>\
+            <p><a href='https://wiki.auckland.ac.nz/pages/viewpage.action?pageId=35586193'>Research Data Planning Checklist</a></p>",
+        'a4059':
+            "<p>The Centre for eResearch is a cross-faculty research centre, hosted within the Faculty of Science. We develop new ways to apply computer and information sciences to all research and science disciplines, both at the University of Auckland and within nationwide research programmes. We aim to enhance the understanding of research processes and the delivery of research computing services.</p>\
+            <p><a href='http://www.eresearch.auckland.ac.nz/en/centre-for-eresearch/contact-us.html'>Contact Us</a></p>",
+        'a4117':
+            "<p>Researchers are welcome to use whichever tool they prefer, be it <a href='https://www.dropbox.com'>Dropbox</a>, <a href='https://drive.google.com'>Google Drive</a>, or NFS mounts. However, the Center for eResearch recommends <a href='https://seafile.cer.auckland.ac.nz/'>Seafile</a></p>",
+        'a4162':
+            "<p>The <a href='http://creativecommons.org/choose/'>creative commons form</a> is an easy way to choose the right licence for you</p>",
+        'a4337':
+            "<p><a href='https://auckland.figshare.com/'>Figshare</a> is a good place to store data long term.</p>",
+        'a4236':
+            "<p>The University of Auckland Research Repository, <a href='https://researchspace.auckland.ac.nz/'>ResearchSpace</a> is an online archive for the University of Auckland, and contains Full Text Theses and other research outputs.</p>",
+        'a4294':
+            "<p><a href='https://auckland.figshare.com/'>Figshare</a> is a good place to store data long term.</p>",
+        'a4203':
+            "<p>The University of Auckland Research Repository, <a href='https://researchspace.auckland.ac.nz/'>ResearchSpace</a> is an online archive for the University of Auckland, and contains Full Text Theses and other research outputs.</p>",
+      };
+      var timer;
+      $('a', $('#svg').contents()).hover(function() {
+        // Use a time so that the sidebar only triggers when the user intentionally hovers over the element for >300 ms.
+        timer = setTimeout(function(target) {
+          var title = '';
+          $(target).find('tspan').each(function(i, e) {
+            var font = $(e).css('font-family');
+            var header = font.indexOf("CMU Sans Serif Demi Condensed") != -1 || font.indexOf("Verdana") != -1;
+            if ($(e).children().length != 0 || !header) return;
+            title += $(e).text().replace('?', '') + ' ';
+          });
+          var html = content[target.id];
+          if (!html) {
+            console.error('No content defined for ' + target.id + ':' + title);
+            return;
+          }
+          html = "<h1>" + title + "</h1>" + html;
+          $('#sidebar').html(html);
+        }, 300, this);
+      }, function() {
+        clearTimeout(timer);
+      });
+    });
+  });
+</script>
 <body>
 
-<object type="image/svg+xml" data="research-data-management-opt.svg" style="display:block;margin:auto">Your browser does not support SVG</object>
+<object id="svg" type="image/svg+xml" data="research-data-management-opt.svg">Your browser does not support SVG</object>
+
+<div id="sidebar">Hover over an element for more information</div>
 
 </body>
 </html
