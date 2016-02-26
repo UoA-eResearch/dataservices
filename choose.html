@@ -155,7 +155,11 @@
             $('.alert').remove();
           }
         });
-        
+        $('#nzdata').change(function() {
+          $('#option_aws').toggle();
+          $('#option_dropbox').toggle();
+          $('#option_gdrive').toggle();
+        });
       });
     </script>
   </head>
