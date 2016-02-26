@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>University of Auckland Research Data Service Chooser</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.16/css/bootstrap-slider.min.css" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.16/bootstrap-slider.min.js"></script>
+    <style>
+    body {
+      background:
+        linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8))
+        no-repeat
+        fixed,
+        url("http://image.unijobs.co.nz/employer/profilebackdrop/employer-100045.png")
+        top center / cover
+        no-repeat
+        fixed;
+      padding-bottom: 300px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .input-container {
+      margin-top: 10px;
+    }
+    .form-group .form-control.checkbox {
+      width: 40px;
+      height: 40px;
+      text-align: left;
+    }
+    .slider.slider-horizontal {
+      width: 100%;
+    }
+    div.option {
+      display: inline-block;
+    }
+    div.option img {
+      width: 200px;
+      margin: 20px;
+    }
+    span.label-container {
+      position: relative;
+    }
+    span.label {
+      position: absolute;
+      top: 100px;
+      z-index: 99;
+    }
+    span.label.gpfs {
+      left: -200px;
+    }
+    span.label.hdd {
+      left: -180px;
+    }
+    </style>
+    <script>
+      $(document).ready(function() {
+        var form = [
+          {type: 'checkbox', label: 'Are you working with databases or do you need a custom database?', name: 'db'},
+          {type: 'slider', label: 'How many files do you expect to store?', name: 'fileCount', min: 0, max: 1000000},
+          {type: 'slider', label: 'How much data do you expect to store in total (in GB)?', name: 'dataTotal', min: 0, max: 10000},
+          {type: 'slider', label: 'What are the typical file sizes (in KB)?', name: 'typicalFileSize', min: 0, max: 100000000},
+          {type: 'checkbox', label: 'Do you need to keep a version history for your data (will it change through time, and will you need to see previous versions)?', name: 'vc'},
+          {type: 'checkbox', label: 'Do you have collaborators that need access?', name: 'collab'},
+          {type: 'checkbox', label: 'From the University of Auckland?', name: 'collabUOA'},
+          {type: 'checkbox', label: 'From other parts of New Zealand?', name: 'collabNZ'},
+          {type: 'checkbox', label: 'From overseas?', name: 'collabOS'},
+          {type: 'checkbox', label: 'Do you need to sync files between computers?', name: 'sync'},
+          {type: 'checkbox', label: 'Are you working actively with your data or is it intended for archive/publish?', name: 'archive'},
+          {type: 'checkbox', label: 'Do you plan to utilise HPC?', name: 'hpc'},
+          {type: 'checkbox', label: 'Are you working with sensitive data?', name: 'sensitive'},
+          //{type: 'checkbox', label: 'Is it ethics related?', name: 'ethics'},
+          //{type: 'checkbox', label: 'Is it IP/commercial?', name: 'comm'},
+          {type: 'checkbox', label: 'Is it important that your data remains in NZ?', name: 'nzdata'},
+          {type: 'checkbox', label: 'Do you need to work on documents collaboratively?', name: 'collab'},
+          
+        ];
+        for (var i in form) {
+          var e = form[i];
+          if (e.type == 'checkbox') {
+            $("#form").append('<div class="form-group"><label for="' + e.name + '" class="col-sm-2 control-label">' + e.label + '</label><div class="col-sm-10 input-container"><input id="' + e.name + '" class="form-control checkbox" type="checkbox"/></div></div>');
+          } else if (e.type == 'slider') {
+            $("#form").append('<div class="form-group"><label for="' + e.name + '" class="col-sm-2 control-label">' + e.label + '</label><div class="col-sm-10 input-container"><input id="' + e.name + '" class="form-control slider" data-slider-id="' + e.name + 'Slider" type="text" data-slider-min="' + e.min + '" data-slider-max="' + e.max + '" data-slider-step="100" data-slider-value="0"/></div></div>');
+          }
+        }
+        
+        var options = [
+          {name: "aws", link: "https://aws.amazon.com/"},
+          {name: "db", link: "https://www.mysql.com/"},
+          {name: "dropbox", link: "https://www.dropbox.com/"},
+          {name: "figshare", link: "https://auckland.figshare.com/"},
+          {name: "gdrive", link: "https://www.library.auckland.ac.nz/services/it-essentials/file-saving-and-sharing"},
+          {name: "gpfs", link: "https://wiki.auckland.ac.nz/display/CER/Access+and+data+transfer#Accessanddatatransfer-Datatransfer"},
+          {name: "hdd", link: "http://www.pbtech.co.nz/index.php?z=c&p=externalhdd"},
+          {name: "network share", link: "https://www.library.auckland.ac.nz/services/it-essentials/file-saving-and-sharing"},
+          {name: "seafile", link: "https://seafile.cer.auckland.ac.nz"}
+        ];
+        for (var i in options) {
+          var o = options[i];
+          $("#options").append('<a href="' + o.link + '"><div id="option_' + o.name + '" class="option"><img src="images/' + o.name + '.png"/></div></a>');
+        }
+        $('#option_gpfs').append('<span class="label-container"><span class="gpfs label label-info">GPFS cluster storage on Pan</span></span>');
+        $('#option_hdd').append('<span class="label-container"><span class="hdd label label-info">An external harddrive</span></span>');
+        
+        $(".slider").slider({
+          tooltip: 'always'
+        });
+        $('#collab').closest('.form-group').nextAll(':lt(3)').hide();
+        $('#collab').change(function() {
+          $('#collab').closest('.form-group').nextAll(':lt(3)').slideToggle();
+        });
+        $('#db').change(function() {
+          $('div.option').not('#option_db').toggle();
+          if (this.checked) {
+            $('html, body').animate({
+              scrollTop: $("#options").offset().top
+            }, 2000);
+            $("#options").append('<div class="alert alert-success" role="alert">If you require a database, the Centre for eResearch can provide you with a VM to host one. Find more information <a href="http://www.eresearch.auckland.ac.nz/en/centre-for-eresearch/research-facilities/virtual-machine-farm.html" class="alert-link">here</a></div>');
+          } else {
+            $('.alert').remove();
+          }
+        });
+        $('#vc').change(function() {
+          if (this.checked) {
+            $("#options").append("<div class='alert alert-success' role='alert'>Dropbox and Google Drive will automatically keep revisions of a file up until the last 30 days. If you're not using these services, an SCM tool such as <a href='https://www.mercurial-scm.org/' class='alert-link'>Mercurial</a> or <a href='https://git-scm.com/' class='alert-link'>Git</a> will be able to track revisions of your files</div>");
+          } else {
+            $('.alert').remove();
+          }
+        });
+        $('#archive').change(function() {
+          $('div.option').not('#option_figshare').toggle();
+          if (this.checked) {
+            $("#options").append("<div class='alert alert-success' role='alert'>Figshare is the recommended system for publishing data.</div>");
+          } else {
+            $('.alert').remove();
+          }
+        });
+        
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>University of Auckland Research Data Service Chooser</h1>
+      <form id='form' class="form-horizontal">
+      </form>
+      <h2>Options:</h2>
+      <div id='options'></div>
+    </div>
+  </body>
+</html>
