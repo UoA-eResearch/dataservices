@@ -74,6 +74,7 @@
           {type: 'checkbox', label: 'From the University of Auckland?', name: 'collabUOA'},
           {type: 'checkbox', label: 'From other parts of New Zealand?', name: 'collabNZ'},
           {type: 'checkbox', label: 'From overseas?', name: 'collabOS'},
+          {type: 'checkbox', label: 'Do you need to work on documents collaboratively in real-time?', name: 'collabRealTime'},
           {type: 'checkbox', label: 'Do you need to sync files between computers?', name: 'sync'},
           {type: 'checkbox', label: 'Are you working actively with your data or is it intended for archive/publish?', name: 'archive'},
           {type: 'checkbox', label: 'Do you plan to utilise HPC?', name: 'hpc'},
@@ -81,7 +82,6 @@
           //{type: 'checkbox', label: 'Is it ethics related?', name: 'ethics'},
           //{type: 'checkbox', label: 'Is it IP/commercial?', name: 'comm'},
           {type: 'checkbox', label: 'Is it important that your data remains in NZ?', name: 'nzdata'},
-          {type: 'checkbox', label: 'Do you need to work on documents collaboratively?', name: 'collab'},
           
         ];
         for (var i in form) {
@@ -114,9 +114,20 @@
         $(".slider").slider({
           tooltip: 'always'
         });
-        $('#collab').closest('.form-group').nextAll(':lt(3)').hide();
+        $('#collab').closest('.form-group').nextAll(':lt(4)').hide();
         $('#collab').change(function() {
-          $('#collab').closest('.form-group').nextAll(':lt(3)').slideToggle();
+          $('#collab').closest('.form-group').nextAll(':lt(4)').slideToggle();
+        });
+        $('#collabRealTime').change(function() {
+          $('div.option').not('#option_gdrive').toggle();
+          if (this.checked) {
+            $('html, body').animate({
+              scrollTop: $("#options").offset().top
+            }, 2000);
+            $("#options").append('<div class="alert alert-success" role="alert">Google Drive is the recommended system for real time collaboration on documents</div>');
+          } else {
+            $('.alert').remove();
+          }
         });
         $('#db').change(function() {
           $('div.option').not('#option_db').toggle();
