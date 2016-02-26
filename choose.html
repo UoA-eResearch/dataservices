@@ -86,7 +86,7 @@
         ];
         for (var i in form) {
           var e = form[i];
-          if (e.type == 'checkbox') {
+          if (e.type == 'checkbox') { 
             $("#form").append('<div class="form-group"><label for="' + e.name + '" class="col-sm-2 control-label">' + e.label + '</label><div class="col-sm-10 input-container"><input id="' + e.name + '" class="form-control checkbox" type="checkbox"/></div></div>');
           } else if (e.type == 'slider') {
             $("#form").append('<div class="form-group"><label for="' + e.name + '" class="col-sm-2 control-label">' + e.label + '</label><div class="col-sm-10 input-container"><input id="' + e.name + '" class="form-control slider" data-slider-id="' + e.name + 'Slider" type="text" data-slider-min="' + e.min + '" data-slider-max="' + e.max + '" data-slider-step="100" data-slider-value="0"/></div></div>');
@@ -119,46 +119,55 @@
           $('#collab').closest('.form-group').nextAll(':lt(4)').slideToggle();
         });
         $('#collabRealTime').change(function() {
-          $('div.option').not('#option_gdrive').toggle();
           if (this.checked) {
             $('html, body').animate({
               scrollTop: $("#options").offset().top
             }, 2000);
-            $("#options").append('<div class="alert alert-success" role="alert">Google Drive is the recommended system for real time collaboration on documents</div>');
+            $('div.option').not('#option_gdrive').hide();
+            $("#options").append('<div id="gdrive_help" class="alert alert-success" role="alert">Google Drive is the recommended system for real time collaboration on documents</div>');
           } else {
-            $('.alert').remove();
+            $('div.option').not('#option_gdrive').show();
+            $('#gdrive_help').remove();
           }
         });
         $('#db').change(function() {
-          $('div.option').not('#option_db').toggle();
           if (this.checked) {
             $('html, body').animate({
               scrollTop: $("#options").offset().top
             }, 2000);
-            $("#options").append('<div class="alert alert-success" role="alert">If you require a database, the Centre for eResearch can provide you with a VM to host one. Find more information <a href="http://www.eresearch.auckland.ac.nz/en/centre-for-eresearch/research-facilities/virtual-machine-farm.html" class="alert-link">here</a></div>');
+            $('div.option').not('#option_db').hide();
+            $("#options").append('<div id="db_help" class="alert alert-success" role="alert">If you require a database, the Centre for eResearch can provide you with a VM to host one. Find more information <a href="http://www.eresearch.auckland.ac.nz/en/centre-for-eresearch/research-facilities/virtual-machine-farm.html" class="alert-link">here</a></div>');
           } else {
-            $('.alert').remove();
+            $('div.option').not('#option_db').show();
+            $('#db_help').remove();
           }
         });
         $('#vc').change(function() {
           if (this.checked) {
-            $("#options").append("<div class='alert alert-success' role='alert'>Dropbox and Google Drive will automatically keep revisions of a file up until the last 30 days. If you're not using these services, an SCM tool such as <a href='https://www.mercurial-scm.org/' class='alert-link'>Mercurial</a> or <a href='https://git-scm.com/' class='alert-link'>Git</a> will be able to track revisions of your files</div>");
+            $("#options").append("<div id='vc_help' class='alert alert-success' role='alert'>Dropbox and Google Drive will automatically keep revisions of a file up until the last 30 days. If you're not using these services, an SCM tool such as <a href='https://www.mercurial-scm.org/' class='alert-link'>Mercurial</a> or <a href='https://git-scm.com/' class='alert-link'>Git</a> will be able to track revisions of your files</div>");
           } else {
-            $('.alert').remove();
+            $('#vc_help').remove();
           }
         });
         $('#archive').change(function() {
-          $('div.option').not('#option_figshare').toggle();
           if (this.checked) {
-            $("#options").append("<div class='alert alert-success' role='alert'>Figshare is the recommended system for publishing data.</div>");
+            $('div.option').not('#option_figshare').hide();
+            $("#options").append("<div id='archive_help' class='alert alert-success' role='alert'>Figshare is the recommended system for publishing data.</div>");
           } else {
-            $('.alert').remove();
+            $('div.option').not('#option_figshare').show();
+            $('#archive_help').remove();
           }
         });
         $('#nzdata').change(function() {
-          $('#option_aws').toggle();
-          $('#option_dropbox').toggle();
-          $('#option_gdrive').toggle();
+          if (this.checked) {
+            $('#option_aws').hide();
+            $('#option_dropbox').hide();
+            $('#option_gdrive').hide();
+          } else {
+            $('#option_aws').show();
+            $('#option_dropbox').show();
+            $('#option_gdrive').show();
+          }
         });
       });
     </script>
